@@ -6,13 +6,11 @@ from google.genai import types
 from PIL import Image
 from github import Github
 
-# -------------------------------------------------------------
-# CONFIGURÁ TUS CLAVES Y DATOS ACÁ ADENTRO ENTRE LAS COMILLAS:
-API_KEY_GEMINI = "AQ.Ab8RN6K0eRkApfLMvSj7cHV20zZ_f6m7mcsvZG9MwDLGGfF0iw"
-GITHUB_TOKEN = "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"
-GITHUB_USUARIO = "4le01722"  # Ej: "juanperez"
-GITHUB_REPO_NOMBRE = "mi-armario-ia"          # El nombre que le diste al repo
-# -------------------------------------------------------------
+# Tomar las credenciales de forma segura desde los Secrets de Streamlit
+API_KEY_GEMINI = st.secrets["API_KEY_GEMINI"]
+GITHUB_TOKEN = st.secrets["GITHUB_TOKEN"]
+GITHUB_USUARIO = st.secrets["GITHUB_USUARIO"]
+GITHUB_REPO_NOMBRE = st.secrets["GITHUB_REPO_NOMBRE"]
 
 # Conectar con GitHub e IA
 g = Github(GITHUB_TOKEN)
@@ -26,7 +24,6 @@ def cargar_armario_github():
         file_content = repo.get_contents("armario.json")
         return json.loads(file_content.decoded_content.decode("utf-8")), file_content.sha
     except Exception:
-        # Si el archivo no existe en GitHub, lo creamos vacío
         repo.create_file("armario.json", "Crear armario inicial", "[]")
         return [], None
 
@@ -41,13 +38,11 @@ def guardar_armario_github(nuevo_armario, sha=None):
 # Cargar el armario al inicio
 armario, armario_sha = cargar_armario_github()
 
-# Inicializar variables de estado de la página
 if "outfit_actual" not in st.session_state:
     st.session_state.outfit_actual = None
 if "historial_feedback" not in st.session_state:
     st.session_state.historial_feedback = []
 
-# Pestañas de la app
 tab1, tab2, tab3 = st.tabs(["👗 Mi Armario e IA", "➕ Agregar Ropa Automáticamente", "📦 Ver Mi Catálogo"])
 
 # --- PESTAÑA 1: RECOMENDACIÓN DE OUTFITS ---
@@ -86,7 +81,6 @@ with tab1:
             if prenda:
                 with cols[i]:
                     st.write(f"**{prenda['nombre']}**")
-                    # Enlace directo de la foto desde GitHub público
                     url_foto = f"https://raw.githubusercontent.com/{repo_path}/main/{prenda['foto_path']}"
                     st.image(url_foto, use_container_width=True)
 
@@ -130,15 +124,12 @@ with tab2:
 
         if st.button("Analizar y Guardar en Internet 🧠"):
             with st.spinner("Subiendo foto y analizando con IA..."):
-                # Convertir imagen a bytes para mandarla a GitHub
                 archivo_subido.seek(0)
                 foto_bytes = archivo_subido.read()
                 
-                # Guardar la foto en el repositorio de GitHub de forma directa
                 try:
                     repo.create_file(ruta_github_foto, f"Agregar foto {nombre_archivo_limpio}", foto_bytes)
                 except Exception:
-                    # Si ya existía, la actualizamos sacando el SHA
                     contents = repo.get_contents(ruta_github_foto)
                     repo.update_file(ruta_github_foto, f"Actualizar foto {nombre_archivo_limpio}", foto_bytes, contents.sha)
 
@@ -195,7 +186,6 @@ with tab3:
                     nuevo_armario = [p for p in armario if p["id"] != prenda["id"]]
                     guardar_armario_github(nuevo_armario, armario_sha)
                     
-                    # Intentar borrar también la foto física en GitHub para no acumular basura
                     try:
                         contents = repo.get_contents(prenda["foto_path"])
                         repo.delete_file(prenda["foto_path"], f"Borrar foto {prenda['id']}", contents.sha)
