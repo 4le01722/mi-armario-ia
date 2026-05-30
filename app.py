@@ -9,7 +9,7 @@ from github import Github
 # -------------------------------------------------------------
 # CONFIGURÁ TUS CLAVES Y DATOS ACÁ ADENTRO ENTRE LAS COMILLAS:
 API_KEY_GEMINI = "AQ.Ab8RN6K0eRkApfLMvSj7cHV20zZ_f6m7mcsvZG9MwDLGGfF0iw"
-GITHUB_TOKEN = "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"
+GITHUB_TOKEN = "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"
 GITHUB_USUARIO = "4le01722"  # Ej: "juanperez"
 GITHUB_REPO_NOMBRE = "mi-armario-ia"          # El nombre que le diste al repo
 # -------------------------------------------------------------
