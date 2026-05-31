@@ -22,5 +22,13 @@
     "abrigo": "bajo",
     "color": "Bordó",
     "foto_path": "ropa/img_20260530_231544028.jpg"
+  },
+  {
+    "id": "img_20260530_231640283",
+    "nombre": "Top negro halter con alfileres",
+    "categoria": "remera",
+    "abrigo": "bajo",
+    "color": "negro",
+    "foto_path": "ropa/img_20260530_231640283.jpg"
   }
 ]
