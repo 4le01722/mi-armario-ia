@@ -14,5 +14,13 @@
     "abrigo": "bajo",
     "color": "blanco",
     "foto_path": "ropa/img_20260530_231611949.jpg"
+  },
+  {
+    "id": "img_20260530_231544028",
+    "nombre": "Remera manga murciélago bordó",
+    "categoria": "remera",
+    "abrigo": "bajo",
+    "color": "Bordó",
+    "foto_path": "ropa/img_20260530_231544028.jpg"
   }
 ]
