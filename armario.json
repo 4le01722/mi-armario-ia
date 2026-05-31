@@ -6,5 +6,13 @@
     "abrigo": "bajo",
     "color": "Negro",
     "foto_path": "ropa/img_20260530_152643515.jpg"
+  },
+  {
+    "id": "img_20260530_231611949",
+    "nombre": "Top de encaje blanco",
+    "categoria": "remera",
+    "abrigo": "bajo",
+    "color": "blanco",
+    "foto_path": "ropa/img_20260530_231611949.jpg"
   }
 ]
