@@ -38,5 +38,13 @@
     "abrigo": "medio",
     "color": "azul oscuro",
     "foto_path": "ropa/img_20260530_231446423.jpg"
+  },
+  {
+    "id": "17801942736664901950369556400530",
+    "nombre": "Buzo con capucha polar beige",
+    "categoria": "abrigo",
+    "abrigo": "alto",
+    "color": "beige",
+    "foto_path": "ropa/17801942736664901950369556400530.jpg"
   }
 ]
