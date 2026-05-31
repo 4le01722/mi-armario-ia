@@ -30,5 +30,13 @@
     "abrigo": "bajo",
     "color": "negro",
     "foto_path": "ropa/img_20260530_231640283.jpg"
+  },
+  {
+    "id": "img_20260530_231446423",
+    "nombre": "Jean azul oscuro",
+    "categoria": "pantalon",
+    "abrigo": "medio",
+    "color": "azul oscuro",
+    "foto_path": "ropa/img_20260530_231446423.jpg"
   }
 ]
